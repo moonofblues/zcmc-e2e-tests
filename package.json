@@ -1,0 +1,28 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:headed": "node scripts/run-tests.mjs --headed",
+    "test:ui": "playwright test --ui",
+    "test:smoke": "node scripts/run-tests.mjs tests/smoke",
+    "test:requests": "node scripts/run-tests.mjs tests/requests",
+    "test:omcc": "node scripts/run-tests.mjs tests/omcc",
+    "test:terminal": "node scripts/run-tests.mjs tests/terminal",
+    "test:custodian": "node scripts/run-tests.mjs tests/custodian",
+    "record": "playwright codegen --load-storage=.auth/state.json -o recordings/new-recording.spec.ts https://sandbox-pr.zcmc.online/terminal",
+    "report": "node scripts/open-report.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "pdf-parse": "^2.4.5"
+  }
+}

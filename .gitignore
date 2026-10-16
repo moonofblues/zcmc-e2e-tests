@@ -1,0 +1,9 @@
+node_modules/
+results/
+test-results/
+playwright-report/
+.auth/state.json
+.env
+# raw recordings can contain PINs; the folder itself is kept via recordings/.gitkeep
+recordings/*
+!recordings/.gitkeep
