@@ -22,10 +22,26 @@ export async function loginAs(page: Page, label: string) {
   await openTerminal(page);
   await openDevTools(page);
   const authenticated = page.waitForResponse((r) => r.url().includes('/api/v1/authenticate'));
+  // After signing in, the app reloads the page by itself (a new document request for /terminal).
+  const reloaded = page
+    .waitForResponse(
+      (r) => r.request().resourceType() === 'document' && new URL(r.url()).pathname === '/terminal',
+      { timeout: 60_000 },
+    )
+    .catch(() => undefined);
+
   await page.getByText(label, { exact: true }).click();
   await authenticated;
-  await page.goto('/');
-  await expect(page).toHaveURL(/\/dashboard/);
+
+  // Let the app finish its own reload/redirect first. Navigating while it does that cancels
+  // our navigation (net::ERR_ABORTED). Switching users takes a while on the sandbox.
+  await reloaded;
+  await page.waitForLoadState('load');
+  await page.waitForURL(/\/dashboard/, { timeout: 10_000 }).catch(() => {});
+  if (!/\/dashboard/.test(page.url())) {
+    await page.goto('/dashboard'); // the app stayed on /terminal: go to the dashboard ourselves
+  }
+  await expect(page).toHaveURL(/\/dashboard/, { timeout: 60_000 });
 }
 
 /** Open the Purchase Requisition page from the hamburger menu. */
