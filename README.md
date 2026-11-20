@@ -5,6 +5,7 @@ Playwright tests for ZCMC systems. **One branch per system**: pick the branch of
 | Branch | System | Sandbox |
 | --- | --- | --- |
 | `pr-tracking-system` | PR Tracking System | https://sandbox-pr.zcmc.online |
+| `recruitment-system` | Recruitment System | https://recruitment.zcmc.online (live site, no sandbox: read the branch README rules first) |
 
 ## Use a system's tests on a PC
 
