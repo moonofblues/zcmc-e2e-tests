@@ -1,0 +1,26 @@
+{
+  "name": "zcmc-recruitment-system-tests",
+  "version": "1.0.0",
+  "description": "Playwright test scripts for the live ZCMC Recruitment Portal (read-only by default)",
+  "private": true,
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium && node scripts/restore-skills.mjs",
+    "setup:skills": "node scripts/restore-skills.mjs",
+    "test": "playwright test",
+    "test:landing": "playwright test tests/landing.spec.ts tests/landing-buttons.spec.ts",
+    "test:jobs": "playwright test tests/jobs.spec.ts",
+    "test:register": "playwright test tests/register.spec.ts",
+    "test:login": "playwright test tests/login.spec.ts",
+    "test:apply": "playwright test tests/apply-job.spec.ts tests/applicant-applications.spec.ts",
+    "test:applications": "playwright test tests/admin-applications.spec.ts",
+    "test:journey": "playwright test tests/application-journey.spec.ts",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+Test case ID,Title,Description,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-LAND-001,Page loads with the correct title,Verify the landing page opens and the browser tab title is correct,"1. Open https://recruitment.zcmc.online/",The page loads and the browser tab title is 'ZCMC Job Portal',Not run,,,,Playwright: landing.spec.ts
+TC-LAND-002,Hero section shows heading and subtitle,Verify the hero section content is displayed,"1. Open the landing page
+2. Look at the top section","The heading 'Build Our Future with ZCMC' is visible, with 'Zamboanga City Medical Center' and the subtitle 'Join the Zamboanga City Medical Center and make a difference in healthcare excellence'",Not run,,,,Playwright: landing.spec.ts
+TC-LAND-003,Open Positions section is displayed,Verify the Open Positions section and its description appear,"1. Open the landing page
+2. Scroll to the Open Positions section","The heading 'Open Positions' and the text 'Explore exciting career opportunities at Zamboanga City Medical Center' are visible",Not run,,,,Playwright: landing.spec.ts. No jobs are currently posted so the list under this heading is empty
+TC-LAND-004,Why Join ZCMC section shows all six benefit cards,Verify all benefit cards are displayed,"1. Open the landing page
+2. Scroll to the Why Join ZCMC? section","The six cards are visible: Healthcare Coverage, Professional Development, Career Growth, Meaningful Work, Team Environment, Additional Benefits",Not run,,,,Playwright: landing.spec.ts
+TC-LAND-005,Call-to-action section is displayed,Verify the closing call-to-action section appears,"1. Open the landing page
+2. Scroll to the bottom section","The heading 'Ready to Start Your Journey?' and the text 'Apply now and become part of ZCMC's dedicated team' are visible",Not run,,,,Playwright: landing.spec.ts
+TC-LAND-006,"Footer shows address, contact details and copyright",Verify the footer information is complete,"1. Open the landing page
+2. Scroll to the footer","The footer shows the address (Dr. Evangelista St., Sta. Catalina, Zamboanga City, 7000), the telephone numbers, the email address and the copyright notice",Not run,,,,Playwright: landing.spec.ts
+TC-LAND-007,No console errors or failed requests on load,Verify the page loads cleanly,"1. Open the landing page with browser developer tools open
+2. Check the Console and Network tabs",No console errors and no failed network requests,Not run,,,,Playwright: landing.spec.ts
+TC-LAND-008,All images load,Verify there are no broken images,"1. Open the landing page
+2. Scroll through the whole page",All images are displayed and none are broken,Not run,,,,Playwright: landing.spec.ts
+TC-LAND-009,No horizontal scroll on a phone-size screen,Verify the layout fits a mobile screen (375 x 812),"1. Open the landing page in a 375 x 812 window or phone
+2. Try scrolling sideways",The page does not scroll horizontally and the content fits the screen,Not run,,,,Playwright: landing.spec.ts

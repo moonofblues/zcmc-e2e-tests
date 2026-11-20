@@ -1,0 +1,92 @@
+Test case ID,Title,Description,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-REG-001,Page loads on Step 1 of 7 with all seven steps in the stepper,Verify the registration wizard opens on the first step,"1. Open https://recruitment.zcmc.online/register","The heading 'Applicant Registration', 'Step 1 of 7' and '14% Completed' are shown. The stepper lists Profile, Address, Education, Eligibility, Experience, References and IPCR",Not run,,,,Playwright: register.spec.ts
+TC-REG-002,Step 1 shows all personal information fields,Verify the personal information fields are displayed,"1. Open the registration page
+2. Look at Personal Information","First Name, Middle Name, Last Name, Name Extension (optional), Sex, Date of Birth, Civil Status and Place of Birth are shown",Not run,,,,Playwright: register.spec.ts
+TC-REG-003,Step 1 shows demographics and account fields,Verify the demographic and account fields are displayed,"1. Open the registration page
+2. Scroll to Demographics & Background and Account Credentials & Contact","Blood Type, Religion, Sexual Orientation, Specific Membership, Ethnicity, Citizenship, Mobile Phone Number, Email Address and Password are shown",Not run,,,,Playwright: register.spec.ts
+TC-REG-004,Empty Step 1 cannot proceed to Step 2,Verify required-field validation,"1. Open the registration page
+2. Leave all fields empty
+3. Click Next Step",The form stays on Step 1 of 7 and the empty required fields are flagged,Not run,,,,Playwright: register.spec.ts
+TC-REG-005,Invalid email format is rejected,Verify email validation,"1. Open the registration page
+2. Type 'not-an-email' in the Email Address field
+3. Click Next Step",The email is flagged as invalid and the form does not proceed,Not run,,,,Playwright: register.spec.ts
+TC-REG-006,Password field hides the typed characters,Verify the password is masked,"1. Open the registration page
+2. Type in the Password field",The characters are masked,Not run,,,,Playwright: register.spec.ts
+TC-REG-007,Already registered Login link opens the login page,Verify the Login link on the registration page,"1. Open the registration page
+2. Click 'Login' next to 'Already registered?'",The login page (/login) opens,Not run,,,,Playwright: register.spec.ts
+TC-REG-008,Sync UMIS Account option is shown for ZCMC employees,Verify the UMIS sync prompt,"1. Open the registration page
+2. Scroll to the bottom","The text 'Currently employed in ZCMC?' and the link 'Click here to sync UMIS Account' are shown",Not run,,,,Playwright: register.spec.ts
+TC-REG-009,Dropdown options are loaded,Verify the registration dropdowns have options,"1. Open the registration page
+2. Click the Sex dropdown
+3. Repeat for Civil Status, Blood Type, Religion, Sexual Orientation, Specific Membership and Ethnicity",Each dropdown lists selectable options,Not run,,,,Playwright: register.spec.ts. The dropdown data was empty earlier (/api/selection-templates returned []) and is loaded now. Sex: Male/Female. Civil Status: Single/Married/Divorced/Widowed. Blood Type: A+ to O- plus Unknown/Not Sure
+TC-REG-010,Applicant completes Step 1 and proceeds to Step 2,Full registration (Step 1 only for now),"1. Open the registration page
+2. Fill in all required Step 1 fields with test data (email from a Mailinator inbox)
+3. Select an option in every dropdown
+4. Click Next Step",Step 2 of 7 opens,Not run,,,,Playwright: register.spec.ts. Fills Step 1 only and clicks Next Step. Middle Name is required. TC-REG-011 to TC-REG-034 cover Steps 2 to 7 and the final submit
+TC-REG-011,Step 2 shows the residential and permanent address fields,Verify the address fields are displayed,"1. Complete Step 1 and click Next Step
+2. Look at Step 2",Step 2 of 7 'Address Details' (29% Completed) shows Residential Address and Permanent Address. Each has House / Block / Lot No.; Street; Subdivision / Village (optional); City / Municipality; Barangay; Province; Zip Code and Telephone / Contact No.,Not run,,,,Playwright: register.spec.ts
+TC-REG-012,Empty Step 2 cannot proceed to Step 3,Verify required-field validation on the address step,"1. Complete Step 1 and open Step 2
+2. Leave all fields empty
+3. Click Next Step",The form stays on Step 2 of 7 and the empty required fields are flagged,Not run,,,,Playwright: register.spec.ts
+TC-REG-013,Choosing a city loads the barangays and fills Province and Zip Code,Verify the dependent address fields,"1. Open Step 2
+2. In City / Municipality type 'Zamboanga City' and select 'Zamboanga City (Zamboanga Del Sur)'
+3. Open the Barangay list",Province shows 'Zamboanga Del Sur' and Zip Code shows 7000 automatically. The Barangay list loads (first item 'Arena Blanco') and was disabled until a city was chosen,Not run,,,,Playwright: register.spec.ts
+TC-REG-014,Same as residential address copies and locks the permanent address,Verify the 'Same as residential address' checkbox,"1. Fill in the Residential Address on Step 2
+2. Tick 'Same as residential address'",Every Permanent Address field shows the residential values and is disabled. Unticking the box makes them editable again,Not run,,,,Playwright: register.spec.ts. Unticking is to be confirmed
+TC-REG-015,Back keeps the data entered on the previous step,Verify no data is lost when going back,"1. Complete Step 1 and open Step 2
+2. Click Back",Step 1 of 7 opens and all the Step 1 values are still filled in,Not run,,,,Playwright: register.spec.ts
+TC-REG-016,Step 3 starts empty and Add Education Entry shows the education fields,Verify the education step,"1. Complete Steps 1 and 2 and open Step 3
+2. Click 'Add Education Entry'","Step 3 of 7 (43% Completed) shows 'No educational entries added yet'. After clicking, Education Entry #1 shows Education Level (Elementary, Secondary, Vocational/Trade Course, College, Graduate Studies), School / Institution Name, Degree / Course, Year From, Year To and Honors / Distinction Received (optional)",Not run,,,,Playwright: register.spec.ts. A toast reads 'Please complete your educational background.'
+TC-REG-017,Empty education entry cannot proceed,Verify required-field validation in an education entry,"1. Open Step 3
+2. Click 'Add Education Entry'
+3. Leave the entry empty
+4. Click Next Step",The form stays on Step 3 of 7 and the required fields are flagged,Not run,,,,Playwright: register.spec.ts. To confirm whether Next Step also blocks when no entry is added at all
+TC-REG-018,Year To earlier than Year From is rejected,Verify the education year range,"1. Open Step 3 and add an education entry
+2. Select Year From 2025
+3. Select Year To 2021
+4. Click Next Step",The range is rejected with a message and the form stays on Step 3,Not run,,,,Playwright: register.spec.ts. Observed: the Year To list offers years earlier than Year From. Expected behavior is to confirm
+TC-REG-019,An education entry can be removed,Verify the delete button on an entry,"1. Open Step 3
+2. Click 'Add Education Entry'
+3. Click the red delete button on Education Entry #1",The entry disappears and 'No educational entries added yet' is shown again,Not run,,,,Playwright: register.spec.ts. The same delete button exists on Eligibility, Experience and Reference entries
+TC-REG-020,Step 4 Add Eligibility Entry shows the eligibility fields,Verify the eligibility step,"1. Open Step 4
+2. Click 'Add Eligibility Entry'","Step 4 of 7 (57% Completed) 'Civil Service & Professional Eligibility' shows 'No eligibility entries added yet'. After clicking, Eligibility Entry #1 shows Civil Service Eligibility / License Title, Rating (%), Date of Examination / Conferment, Place of Examination / Conferment, Date Released (optional) and Date of Validity (optional)",Not run,,,,Playwright: register.spec.ts. Titles include Career Service Professional (Second Level); Career Service Sub-Professional (First Level); PRC Board Passer; Bar Exam Passer; PD 907 (Honor Graduate) and others
+TC-REG-021,Empty eligibility entry cannot proceed,Verify required-field validation in an eligibility entry,"1. Open Step 4
+2. Click 'Add Eligibility Entry'
+3. Leave the entry empty
+4. Click Next Step",The form stays on Step 4 of 7 and the required fields are flagged,Not run,,,,Playwright: register.spec.ts. To confirm whether an applicant with no eligibility can skip this step
+TC-REG-022,Step 5 Add Experience Entry shows the work experience fields,Verify the work experience step,"1. Open Step 5
+2. Click 'Add Experience Entry'","Step 5 of 7 (71% Completed) 'Work Experience' shows 'No work experience added yet'. After clicking, Experience Entry #1 shows Inclusive Date (From), Inclusive Date (To), 'Currently Employed here (Present)' checkbox, Position Title, Department / Agency / Company, Status of Appointment and a Government Service? switch (default 'No (Private)')",Not run,,,,Playwright: register.spec.ts
+TC-REG-023,Currently Employed here removes the need for an end date,Verify the Present option,"1. Open Step 5 and add an entry
+2. Tick 'Currently Employed here (Present)'",The Inclusive Date (To) field is disabled or cleared and the entry can be saved without an end date,Not run,,,,Playwright: register.spec.ts. Behavior to confirm
+TC-REG-024,Empty experience entry cannot proceed,Verify required-field validation in an experience entry,"1. Open Step 5
+2. Click 'Add Experience Entry'
+3. Leave the entry empty
+4. Click Next Step",The form stays on Step 5 of 7 and the required fields are flagged,Not run,,,,Playwright: register.spec.ts. To confirm whether this step can be skipped with no entries
+TC-REG-025,Step 6 Add Reference Entry shows the reference fields,Verify the character references step,"1. Open Step 6
+2. Click 'Add Reference Entry'","Step 6 of 7 (86% Completed) 'Character References' shows 'No character references added yet'. After clicking, Reference #1 shows Full Name, Position / Title, Email Address, Contact Number, Relationship Type (Supervisor, Subordinate, Peer) and Office / Work Address",Not run,,,,Playwright: register.spec.ts
+TC-REG-026,Reference with an invalid email is rejected,Verify email validation on a reference,"1. Open Step 6 and add a reference
+2. Fill in every field but type 'not-an-email' as the Email Address
+3. Click Next Step",The email is flagged as invalid and the form stays on Step 6,Not run,,,,Playwright: register.spec.ts
+TC-REG-027,Step 7 shows the IPCR rating field and it can be left blank,Verify the IPCR step,"1. Open Step 7
+2. Leave the rating empty",Step 7 of 7 (100% Completed) shows 'Latest IPCR Numerical Rating (1.00 - 5.00)' and the hint that it can be left empty if the applicant never worked in a government agency. The Finish Registration button is shown,Not run,,,,Playwright: register.spec.ts
+TC-REG-028,IPCR rating outside 1.00 to 5.00 is rejected,Verify the IPCR range,"1. Open Step 7
+2. Type 0.5 and click Finish Registration
+3. Type 5.5 and click Finish Registration",Both values are rejected and the Registration Prompt does not open,Not run,,,,Playwright: register.spec.ts. Behavior to confirm
+TC-REG-029,Progress bar and stepper follow the current step,Verify the progress indicators,"1. Complete the steps one at a time
+2. Check the percentage and the stepper after each Next Step","The progress shows 14%, 29%, 43%, 57%, 71%, 86% and 100% for Steps 1 to 7. Finished steps show a check mark in the stepper",Not run,,,,Playwright: register.spec.ts
+TC-REG-030,Finish Registration opens the Registration Prompt,Verify the pre-submit reminders,"1. Complete Steps 1 to 7
+2. Click Finish Registration
+3. Click Next on each tab","The 'Registration Prompt' dialog opens with the tabs Credentials, Security and Recovery. The last tab has the button 'I Understand, Continue'. Cancel closes it without submitting",Not run,,,,Playwright: register.spec.ts. Does not create an account if the dialog is cancelled
+TC-REG-031,Legal Affirmation requires the sworn statement before finalizing,Verify the Legal Affirmation dialog,"1. Click 'I Understand, Continue' in the Registration Prompt
+2. Look at the Confirm & Finalize button
+3. Choose a verification channel
+4. Tick 'I swear that all information provided is true, accurate, and complete.'","The dialog warns about a permanent lifetime ban. Confirm & Finalize is disabled until the box is ticked. Email Address is selected by default and Mobile Number can be chosen instead",Not run,,,,Playwright: register.spec.ts. Cancel closes the dialog without submitting
+TC-REG-032,Submitting the registration opens the verification page,Verify what happens after Confirm & Finalize,"1. Tick the sworn statement
+2. Click Confirm & Finalize",The page opens /verify and asks the applicant to verify the email address,Fail,"The page moved to /verify, which is completely blank. No text, form or buttons are shown, also after a reload",Open,High,Seen manually on 2026-11-20 with Email Address as the channel. Needs a developer to check. Playwright: register.spec.ts (full-registration group)
+TC-REG-033,A verification message is sent to the email address,Verify the verification email arrives,"1. Submit the registration with a Mailinator email address
+2. Open the Mailinator inbox",A verification message from ZCMC arrives with a code or link,Not run,"The inbox was empty a few minutes after the submit on 2026-11-20. Needs a recheck because the /verify page was blank",,,Public inbox: use only fake data. Playwright: register.spec.ts (full-registration group)
+TC-REG-034,An email that is already registered is rejected on Step 1,Verify the duplicate email check,"1. Open the registration page
+2. Fill in Step 1 using an email that already has an account (for example zcmc.pwtest01@mailinator.com)",The message 'This email address is already registered.' is shown under the Email Address field and Next Step is disabled,Not run,,,,Playwright: register.spec.ts. Observed: the check happens on Step 1
+TC-REG-035,Specific Membership PWD requires a Type of Disability,Verify the conditional field on Step 1,"1. Open the registration page
+2. Fill in Step 1
+3. Choose 'PWD (Person with Disability)' as Specific Membership",A required 'Type of Disability' dropdown appears and Next Step stays disabled until a type is chosen,Not run,,,,Playwright: register.spec.ts. Observed on 2026-11-20. The list of disability types is still to be recorded

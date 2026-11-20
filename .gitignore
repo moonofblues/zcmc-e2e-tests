@@ -1,0 +1,10 @@
+node_modules/
+playwright-report/
+.env
+admin-state.json
+.auth/
+
+# Claude Code skills are large: restored from skills-lock.json by scripts/restore-skills.mjs (see CLAUDE.md).
+# .claude/settings.json (the SessionStart hook) stays in the repo.
+.agents/
+.claude/skills/

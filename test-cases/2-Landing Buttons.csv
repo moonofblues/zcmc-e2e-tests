@@ -1,0 +1,23 @@
+Test case ID,Title,Description,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-BTN-001,Join ZCMC button leads to the job list,Verify the Join ZCMC button opens the job list,"1. Open the landing page
+2. Scroll to the 'Ready to Start Your Journey?' section
+3. Click 'Join ZCMC'",The Browse Open Positions page (/jobs) opens,Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-002,Hero Browse Jobs button leads to the job list,Verify the hero Browse Jobs button opens the job list,"1. Open the landing page
+2. Click 'Browse Jobs' in the top section",The Browse Open Positions page (/jobs) opens,Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-003,View All Open Positions button leads to the job list,Verify the button opens the job list,"1. Open the landing page
+2. Scroll to Open Positions
+3. Click 'View All Open Positions'",The Browse Open Positions page (/jobs) opens,Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-004,Hero About ZCMC button opens the ZCMC profile page,Verify the About ZCMC button leads to the ZCMC DOH profile page,"1. Open the landing page
+2. Click 'About ZCMC' in the top section",The ZCMC DOH profile page (https://zcmc.doh.gov.ph/profile/) opens,Not run,,,,Playwright: landing-buttons.spec.ts. External site: only the address is checked. It may open in the same tab or a new tab
+TC-BTN-005,Header Home link returns to the landing page,Verify the Home link in the header,"1. Open /jobs
+2. Click 'Home' in the header",The landing page opens with the heading 'Build Our Future with ZCMC',Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-006,Header Jobs link opens the job list,Verify the Jobs link in the header,"1. Open the landing page
+2. Click 'Jobs' in the header",The Browse Open Positions page (/jobs) opens,Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-007,Header Login link opens the login page,Verify the Login link in the header,"1. Open the landing page
+2. Click 'Login' in the header",The login page (/login) opens with the heading 'Welcome Back',Not run,,,,Playwright: landing-buttons.spec.ts
+TC-BTN-008,Footer Browse Jobs link opens the job list,Verify the Browse Jobs link in the footer,"1. Open the landing page
+2. Scroll to the footer
+3. Click 'Browse Jobs' under Quick Links",The Browse Open Positions page opens,Not run,,,,Playwright: landing-buttons.spec.ts. The link goes to /Jobs (capital J) while the header uses /jobs
+TC-BTN-009,Footer About Us and Contact Us links point to the ZCMC DOH site,Verify the external link addresses,"1. Open the landing page
+2. Scroll to the footer
+3. Check the About Us and Contact Us links",About Us points to https://zcmc.doh.gov.ph/profile/ and Contact Us points to https://zcmc.doh.gov.ph/about-us/,Not run,,,,Playwright: landing-buttons.spec.ts. Only the link addresses are checked. The external pages are not opened

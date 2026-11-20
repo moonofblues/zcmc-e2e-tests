@@ -1,0 +1,37 @@
+Test case ID,Title,Description,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-LOGIN-001,Page loads with the login form,Verify the login page and its fields,"1. Open https://recruitment.zcmc.online/login","The heading 'Welcome Back', the Email Address and Password fields, the Remember me checkbox and the Log in button are shown",Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-002,Password field hides the typed characters,Verify the password is masked,"1. Open the login page
+2. Type in the Password field",The characters are masked,Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-003,Alternative sign-in options are shown,Verify the other login options,"1. Open the login page
+2. Scroll to 'OR CONTINUE WITH'","ZCMC UMIS and Google Account options are shown",Not run,,,,Playwright: login.spec.ts. The options are only checked as shown. They are not clicked
+TC-LOGIN-004,Forgot password link opens the password reset page,Verify the Forgot password? link,"1. Open the login page
+2. Click 'Forgot password?'",The password reset page (/forgot-password) opens,Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-005,Register now link opens the registration page,Verify the Register now link,"1. Open the login page
+2. Click 'Register now'",The registration page (/register) opens,Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-006,Back to Home returns to the landing page,Verify the Back to Home link,"1. Open the login page
+2. Click 'Back to Home'",The landing page opens,Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-007,Empty form cannot be submitted,Verify required-field validation,"1. Open the login page
+2. Leave both fields empty
+3. Click Log in",The form stays on the login page and the empty fields are flagged,Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-008,Wrong credentials are rejected with an error,Verify login fails for an unknown account,"1. Open the login page
+2. Enter no.such.user.pwtest@mailinator.com and password WrongPassword#123
+3. Click Log in",The user stays on the login page and an error message is shown,Not run,,,,Playwright: login.spec.ts. One login attempt on the live system. The exact wording of the error is still to be confirmed
+TC-LOGIN-009,Valid login opens the Portal Gateway,Verify a successful login leads to the portal selection,"1. Open the login page
+2. Enter the email and password of an existing account
+3. Click Log in","The 'Portal Gateway' page opens with the text 'Select your destination portal to proceed to your account.'",Not run,,,,Playwright: login.spec.ts. Uses TEST_LOGIN_EMAIL and TEST_LOGIN_PASSWORD from .env. Skipped when they are not set. Signs in once on the live system
+TC-LOGIN-010,Portal Gateway lists the three portals,Verify the portal choices,"1. Log in with an existing account
+2. Look at the Portal Gateway","Three choices are shown: Applicant Portal (Browse job openings, apply, and track status), Admin / Staff Portal (Manage system, job applications & recruitment) and HRMPSB Board Portal (Merit selection deliberations & candidate evaluations). The footer shows 'Zamboanga City Medical Center © 2026'",Not run,,,,Playwright: login.spec.ts
+TC-LOGIN-011,Back to login returns to the login page,Verify the Back to login link on the Portal Gateway,"1. Log in with an existing account
+2. Click 'Back to login'",The login page (/login) opens,Not run,,,,Playwright: login.spec.ts. To confirm whether the session is also ended
+TC-LOGIN-012,Applicant Portal opens the applicant side,Verify the Applicant Portal choice,"1. Log in with an existing account
+2. Click 'Applicant Portal'",The applicant side opens where the user can browse job openings and track applications,Not run,,,,Playwright: login.spec.ts. The destination address is to be confirmed
+TC-LOGIN-013,Admin / Staff Portal opens for an account with staff access,Verify the Admin / Staff Portal choice,"1. Log in with an account that has staff access
+2. Click 'Admin / Staff Portal'",The admin and staff side opens (system and application management),Not run,,,,Playwright: login.spec.ts. The destination address is to be confirmed. Needs an account with the staff role
+TC-LOGIN-014,HRMPSB Board Portal opens for an account with board access,Verify the HRMPSB Board Portal choice,"1. Log in with an account that has board access
+2. Click 'HRMPSB Board Portal'",The board side opens (merit selection and candidate evaluation),Not run,,,,Playwright: login.spec.ts. The destination address is to be confirmed. Needs an account with the board role
+TC-LOGIN-015,An account without access to a portal cannot open it,Verify portal access is restricted by role,"1. Log in with an applicant-only account
+2. Click 'Admin / Staff Portal'
+3. Go back and click 'HRMPSB Board Portal'",Access is denied with a message or the user is sent back. The applicant-only account never reaches the admin or board pages,Not run,,,,Playwright: login.spec.ts. Behavior to confirm. Needs an applicant-only account
+TC-LOGIN-016,A newly registered account can log in,Verify login right after registration,"1. Register a new account (TC-REG-032)
+2. Verify the email address
+3. Open the login page and log in with the new account",The Portal Gateway opens,Not run,,,,Manual. Blocked: the /verify page is blank (TC-REG-032), so a new account cannot be verified yet

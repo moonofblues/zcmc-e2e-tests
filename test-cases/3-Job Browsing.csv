@@ -1,0 +1,21 @@
+Test case ID,Title,Description,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-JOB-001,Page loads with heading and search section,Verify the job list page opens with its main sections,"1. Open https://recruitment.zcmc.online/jobs","The title is 'ZCMC Job Portal'. The heading 'Browse Open Positions', the 'Search & Filter Jobs' section and the 'Available Positions' section are visible",Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-002,"Keyword box, employment type filter, Search and Clear Filters are present",Verify all search controls are displayed,"1. Open the job list page
+2. Look at the Search & Filter Jobs section","The keyword box (placeholder 'e.g. Medical Officer, Nurse, Administrative Aide'), the Employment Type dropdown ('All Types'), and the Search and Clear Filters buttons are visible",Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-003,Result count is shown,Verify the number of jobs found is displayed,"1. Open the job list page
+2. Look under Available Positions",A count such as 'N jobs found' is displayed,Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-004,Search for a keyword that does not exist shows the empty state,Verify the no-results message,"1. Open the job list page
+2. Type 'zzzz-no-such-job-zzzz' in the keyword box
+3. Click Search","'0 jobs found' and 'No matching jobs found' are shown",Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-005,Clear Filters resets the keyword box,Verify Clear Filters empties the search,"1. Open the job list page
+2. Type 'Nurse' in the keyword box
+3. Click Clear Filters",The keyword box is empty,Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-006,Header and footer navigation are present,Verify navigation is shown on the job list page,"1. Open the job list page
+2. Check the header and footer","The Home and Login links are in the header, and the footer shows Zamboanga City Medical Center details",Not run,,,,Playwright: jobs.spec.ts
+TC-JOB-007,Posted jobs are listed and match the count,Verify posted jobs appear in the list,"1. Open the job list page
+2. Count the job cards and compare with the 'N jobs found' text",The number of job cards equals the number shown in 'N jobs found',Not run,,,,Playwright: jobs.spec.ts. Cannot be run now: no jobs are posted on the live portal (0 jobs found). Blocked until jobs are posted
+TC-JOB-008,Searching by an existing job title returns matching jobs,Verify keyword search finds a posted job,"1. Open the job list page
+2. Type the title of a listed job in the keyword box
+3. Click Search",The job with that title is still listed,Not run,,,,Playwright: jobs.spec.ts. Blocked until jobs are posted
+TC-JOB-009,Opening a job shows its details,Verify a job's detail view,"1. Open the job list page
+2. Click a job","The job details are shown (title, description, requirements and an apply option)",Not run,,,,Playwright: jobs.spec.ts. Blocked until jobs are posted. Update the expected result after seeing the real details page
