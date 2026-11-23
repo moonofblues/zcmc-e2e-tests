@@ -1,0 +1,6 @@
+node_modules/
+playwright-report/
+test-results/
+ci-results.json
+.env
+.auth/
