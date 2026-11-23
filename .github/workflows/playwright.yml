@@ -26,6 +26,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
 
       # Read-only public specs only. Admin/apply specs need a saved login that is not in CI.
+      # login.spec.ts is left out: the login Security Verification challenge is never solved by script.
       - name: Run tests
         run: >
           npx playwright test
@@ -33,7 +34,6 @@ jobs:
           tests/landing-buttons.spec.ts
           tests/jobs.spec.ts
           tests/register.spec.ts
-          tests/login.spec.ts
 
       - name: Job summary
         if: always()
