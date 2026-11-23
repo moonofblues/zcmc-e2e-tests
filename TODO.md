@@ -38,7 +38,14 @@ Nothing from the application-flow tests has been run yet. The cases and results 
 Write all test cases and scripts first. The first Playwright run comes after that, when the user says so.
 1. **Sheet:** paste the three new CSVs into their tabs and delete the 16 old rows from `Application Flow` (see "Sheet tabs"). If the sheet rejects `Blocked` as a Status in `Application Flow`, add `Blocked` to the dropdown and set the 5 cases (`TC-APPLY-003`, `006`, `007`, `TC-E2E-001`, `002`) by hand.
 2. **Skipped or not inspected yet (pick up here on another PC):** see "Pickup list" below. `TC-APPPORTAL-004`, `005` and `TC-APPADM-006` are still `Not run`.
-3. **Cases for the rest of the system:** continue writing cases and CSVs for the parts of the system not covered yet.
+   - `HR Applications.csv` now has 62 rows (`TC-APPADM-001` to `062`). If the tab already holds `001` to `014`, paste only rows `015` to `062` below them.
+3. **Cases for the rest of the system:** continue writing cases and CSVs for the parts of the system not covered yet. Follow the coverage rule in `CLAUDE.md` (inventory first, then cases). Recommended module order:
+   1. Calendar Schedules (Set for interview feeds it)
+   2. Exam Management, then Examinee Management (Attach Exam Types feeds them)
+   3. Email Templates and Sms Templates (Send Email and Send SMS feed them; the SMS template list was empty)
+   4. Users, HRMPSB and Administrators (Account Management)
+   5. Dashboard, Action Logs filters and paging, and Settings
+   6. Applicant side extras: the bell, the Examinations popup, Security & Account Settings
 4. **First run of the read-only tests** (only when the user says so), with `ADMIN_STORAGE_STATE` set (README, Admin login). Expect small selector fixes. Spots marked `TODO` in the specs: `switchModule` in `tests/helpers/application-flow.ts` (dropdown and option selectors were never run) and the accessible names of the filter and column icon buttons.
 5. When the apply flow is fixed:
    - Look at the upload page and fill in the `TODO` selectors in `uploadAndSubmit` (file input, Submit button, success message).
