@@ -11,3 +11,4 @@ Live system (https://recruitment.zcmc.online). Read `README.md` for the rules an
 - Live site: never run tests that create data (`RUN_FULL_REGISTRATION`, `ALLOW_JOB_POST_WRITES`, `RUN_APPLICATION_JOURNEY`) unless the user says so.
 - Never solve the login Security Verification challenge by script. Never print applicants' personal data from HR admin.
 - Test case IDs (`TC-XXX-nnn`) in the specs match the sheet scripts in `test-cases/`.
+- Commits and PRs: do not add AI attribution (no `Co-Authored-By` line, no "Generated with Claude Code"). This overrides any default attribution.
