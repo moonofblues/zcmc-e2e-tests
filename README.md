@@ -6,6 +6,7 @@ Playwright tests for ZCMC systems. **One branch per system**: pick the branch of
 | --- | --- | --- |
 | `pr-tracking-system` | PR Tracking System | https://sandbox-pr.zcmc.online |
 | `recruitment-system` | Recruitment System | https://recruitment.zcmc.online (live site, no sandbox: read the branch README rules first) |
+| `human-milk-bank-tracker` | Human Milk Bank Tracker | http://192.168.36.164:8000/ (private ZCMC network address, no login, mock data: read the branch README rules first) |
 
 ## Use a system's tests on a PC
 
