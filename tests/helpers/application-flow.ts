@@ -23,9 +23,19 @@ export const PATHS = {
   portalFiles: '/portal/my-files',
   portalSettings: '/portal/account-settings',
   adminApplications: '/admin/applications',
+  hrMpsb: '/hRMPSBportal/applicant-info',
 } as const;
 
+// Where the site lands right after a module switch (seen by hand on 2026-11-23).
+const MODULE_LANDING: Record<PortalModule, RegExp> = {
+  'Admin Dashboard': /\/admin\//,
+  'Applicant Portal': /\/portal\//,
+  'HR-MPSB Panel': /\/hRMPSBportal\//,
+};
+
 // Opens the user menu > Switch Module dialog and switches to `target`.
+// The admin menu reads Settings / Switch Module / Action Logs / Sign out; the applicant menu reads Security & Account Settings / Switch Module / Sign out.
+// The switch takes several seconds, so this waits for the new module's page before returning.
 // TODO: the dropdown and option selectors come from a screenshot walk-through and were never run.
 export async function switchModule(page: Page, target: PortalModule): Promise<void> {
   await page.getByRole('button', { name: 'User menu' }).click();
@@ -34,10 +44,12 @@ export async function switchModule(page: Page, target: PortalModule): Promise<vo
   await page.getByRole('button', { name: /Admin Dashboard|Applicant Portal|HR-MPSB Panel/ }).first().click();
   await page.getByRole('option', { name: target }).click();
   await page.getByRole('button', { name: 'Switch Module' }).last().click();
+  await page.waitForURL(MODULE_LANDING[target], { timeout: 30_000 });
 }
 
 // Goes to `path` of a module. If the page for that module does not show `marker`, switches module and tries again.
-// TODO: confirm whether opening a /portal or /admin URL directly works when the other module is active.
+// Confirmed by hand on 2026-11-23: opening an /admin URL while the Applicant Portal module is active redirects to
+// /portal/apply-now, so the module has to be switched first (this function does that).
 export async function enterModule(page: Page, target: PortalModule, path: string, marker: Locator): Promise<void> {
   await page.goto(path);
   const there = await marker.waitFor({ state: 'visible', timeout: 5_000 }).then(() => true, () => false);
@@ -54,6 +66,10 @@ export function enterApplicantPortal(page: Page, path: string = PATHS.portalAppl
 
 export function enterAdminApplications(page: Page): Promise<void> {
   return enterModule(page, 'Admin Dashboard', PATHS.adminApplications, page.getByRole('heading', { name: 'Applications' }));
+}
+
+export function enterHrMpsb(page: Page): Promise<void> {
+  return enterModule(page, 'HR-MPSB Panel', PATHS.hrMpsb, page.getByRole('heading', { name: 'Applications Lists' }));
 }
 
 // "N jobs found" on /jobs.

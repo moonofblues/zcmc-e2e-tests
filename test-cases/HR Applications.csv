@@ -1,0 +1,174 @@
+Test case ID,Title,Description,Pre-conditions,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes
+TC-APPADM-001,The Applications list opens with title and heading,Verify the HR applications list,Signed in with the Admin Dashboard module active,"1. Sign in to the Admin Dashboard
+2. Open Applications (/admin/applications)","The title is 'Applications - ZCMC Recruitment Portal' and the heading 'Applications' with the breadcrumb Applications > List",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-002,The seven status tabs are shown with counts,Verify the status tabs,Signed in with the Admin Dashboard module active,"1. Open /admin/applications","All Applications, Screening & Shortlist, Interview & Evaluation, Hired, Onboarded, Not Selected and Not Qualified, each with a count",Passed,"As expected (counts on 2026-11-23: 4, 4, 0, 3, 0, 0, 2)",,,Playwright: admin-applications.spec.ts
+TC-APPADM-003,Review Auto-Rejections and Generate Reports buttons are available,Verify the header buttons,Signed in with the Admin Dashboard module active,"1. Open /admin/applications",Both buttons are shown,Passed,As expected. Neither was clicked,,,Playwright: admin-applications.spec.ts. The buttons are only checked as shown
+TC-APPADM-004,The table shows the expected columns,Verify the columns,Signed in with the Admin Dashboard module active,"1. Open /admin/applications","Applicant Details, Demographics, Addresses, Contact Info, Position Applied, Status, Attached Exam(s) and Date Applied",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-005,Each applicant row carries an application number like #APP-00024,Verify the application numbers,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications",Every row shows #APP- followed by five digits,Passed,As expected (for example #APP-00024),,,Playwright: admin-applications.spec.ts
+TC-APPADM-006,Search with a value that matches nothing shows no rows,Verify the search,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Type 'zzzz-no-such-applicant-zzzz' in Search",No application rows are shown,Not run,,,,Playwright: admin-applications.spec.ts. Empty-state wording to confirm
+TC-APPADM-007,"Page size offers 5, 10, 25 and 50",Verify the page size,Signed in with the Admin Dashboard module active,"1. Open /admin/applications","The Per page dropdown offers 5, 10, 25 and 50",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-008,Filter and column manager buttons are available,Verify the toolbar,Signed in with the Admin Dashboard module active,"1. Open /admin/applications","A filter button (with a count badge) and a column manager button are shown next to Search",Passed,As expected. Both are icon buttons with no visible label,,,Playwright: admin-applications.spec.ts. Accessible names: Filter and Column manager
+TC-APPADM-009,"Switch Module offers Admin Dashboard, Applicant Portal and HR-MPSB Panel",Verify the module switcher,Signed in with the Admin Dashboard module active,"1. Open the user menu
+2. Click Switch Module
+3. Open the Available Modules dropdown","The three modules are listed",Passed,As expected. One login covers the applicant and the HR side. The switch takes several seconds,,,Playwright: admin-applications.spec.ts
+TC-APPADM-010,"The Filters dialog offers Job Postings, Status and Applicant",Verify the filter dialog,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click the filter button","A 'Filters' dialog with three dropdowns (Job Postings, Status, Applicant) all set to All, and the buttons Apply filters, Reset and Close",Passed,As expected. Closed with Close without applying anything,,,Playwright: admin-applications.spec.ts. Nothing is selected or applied
+TC-APPADM-011,The column manager lists nine columns and Updated at is off by default,Verify the column manager,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click the column manager button","A 'Columns' panel with checkboxes for Applicant Details, Demographics, Addresses, Contact Info, Position Applied, Status, Attached Exam(s), Date Applied and Updated at. Updated at is unchecked. Reset and Apply columns buttons",Passed,As expected,,,Playwright: admin-applications.spec.ts. Nothing is changed or applied
+TC-APPADM-012,A row Actions menu offers nine actions,Verify the row menu,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Click the three-dot button of a row","The menu offers View, View Documents, Send SMS, Send Email Notification, Mark not qualified, Attach Exam Types, Set for interview, Mark as Hired and Change status",Passed,As expected,,,"Playwright: admin-applications.spec.ts. Only checked as shown. Never click Send SMS, Send Email Notification, Mark not qualified, Attach Exam Types, Set for interview, Mark as Hired or Change status: they send a message or change a real application"
+TC-APPADM-013,View opens the application page with its seven tabs and the uploaded documents panel,Verify the application view page,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Click the three-dot button of a row
+3. Click View","The page /admin/applications/<number> opens, titled 'View applications - ZCMC Recruitment Portal'. It shows an Applicant Summary (position, plantilla and status badges, and counters), the tabs Personal Information, Education, Experiences, Trainings, Eligibilities, Vol. Work and Char. References, an 'Uploaded Documents & Files' panel (current status and file requirements with View File and Download), a collapsible Job Position Details and a Back button",Passed,As expected,,,"Playwright: admin-applications.spec.ts. The page shows a real applicant's personal data: only labels are checked, never names, emails or phone numbers. The header also has icon buttons for email, Mark not qualified, Attach Exam Types, interview calendar and Change status: not clicked"
+TC-APPADM-014,"The admin user menu offers Settings, Switch Module, Action Logs and Sign out",Verify the admin user menu,Signed in with the Admin Dashboard module active,"1. Click the avatar (top right) in the Admin Dashboard","The menu shows the name, a light / dark / system theme switch, Settings, Switch Module, Action Logs and Sign out",Passed,As expected,,,Playwright: admin-applications.spec.ts. Sign out is not clicked
+TC-APPADM-015,The Screening & Shortlist tab lists its applications,Verify the status tab,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Click the Screening & Shortlist tab","The address becomes /admin/applications?tab=screening and the applications with that status are listed",Passed,As expected (4 applications),,,Playwright: admin-applications.spec.ts. The count depends on the data
+TC-APPADM-016,The Interview & Evaluation tab shows the empty state when it has no applications,Verify the status tab and its empty state,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click the Interview & Evaluation tab","The address becomes ?tab=interview and the message 'No Applications in this Category - Switch tabs or adjust your filters to explore other applicant records.' is shown",Passed,As expected (0 applications),,,Playwright: admin-applications.spec.ts. The test checks the empty state only when the tab count is 0
+TC-APPADM-017,The Hired tab lists its applications,Verify the status tab,Signed in with the Admin Dashboard module active. At least one application has the Hired status,"1. Open /admin/applications
+2. Click the Hired tab","The address becomes ?tab=hired and the hired applications are listed",Passed,As expected (3 applications),,,Playwright: admin-applications.spec.ts. The count depends on the data
+TC-APPADM-018,The Onboarded tab shows the empty state when it has no applications,Verify the status tab and its empty state,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click the Onboarded tab","The address becomes ?tab=onboarded and the 'No Applications in this Category' message is shown",Passed,As expected (0 applications),,,Playwright: admin-applications.spec.ts. The test checks the empty state only when the tab count is 0
+TC-APPADM-019,The Not Selected tab shows the empty state when it has no applications,Verify the status tab and its empty state,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click the Not Selected tab","The address becomes ?tab=not_selected and the 'No Applications in this Category' message is shown",Passed,As expected (0 applications),,,Playwright: admin-applications.spec.ts. The test checks the empty state only when the tab count is 0
+TC-APPADM-020,The Not Qualified tab lists its applications and a locked row cannot be selected,Verify the Not Qualified tab,Signed in with the Admin Dashboard module active. At least one application is Not Qualified,"1. Open /admin/applications
+2. Click the Not Qualified tab","The address becomes ?tab=disqualified and the applications are listed. A row marked with a red icon has no checkbox and no three-dot menu",Passed,"As expected (2 applications). One row shows a red icon, no checkbox and no menu, so the bar says 'Select all 1'",,,Playwright: admin-applications.spec.ts. Only the address and the rows are checked. The reason for the locked row is not known: ask the team
+TC-APPADM-021,Search by an email word filters the list and adds an Active filters chip,Verify the search,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Type 'gmail' in Search
+3. Wait about 2 seconds","The address gets ?search=gmail, an 'Active filters' chip 'Search: gmail' appears and the applications that match are listed",Passed,As expected,,,Playwright: admin-applications.spec.ts. The search runs about 2 seconds after typing
+TC-APPADM-022,Clearing the search removes the chip and restores the list,Verify clearing the search,Signed in with the Admin Dashboard module active,"1. Type 'gmail' in Search
+2. Clear the Search box","The chip disappears, the address loses ?search= and the full list is shown again",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-023,Search matches the applicant name and email but not the position or application number,Verify what the search covers,Signed in with the Admin Dashboard module active. An application exists for the position NURSE II,"1. Type 'NURSE' in Search
+2. Type '00024' in Search","No applications are shown for either word. The position is found with the Filters, not the search",Passed,"As expected: both searches showed 'No Applications in this Category'",,,Playwright: not automated (depends on the data). Taken as designed: the position is found with the Filters. Confirm with the team
+TC-APPADM-024,Applying the Status filter narrows the list and shows a chip and a count,Verify applying a filter,Signed in with the Admin Dashboard module active. An application has the status Pending,"1. Open /admin/applications
+2. Click the filter button
+3. Choose Pending in Status
+4. Click Apply filters","The address gets ?filters[status][value]=Pending, the filter button shows 1, an 'Active filters: Status: Pending' chip appears and only Pending applications are listed ('Showing 1 result')",Passed,As expected,,,Playwright: admin-applications.spec.ts. The Status control is a custom searchable dropdown: selectors to confirm on the first run
+TC-APPADM-025,"The Status filter lists 15 statuses",Verify the filter choices,Signed in with the Admin Dashboard module active,"1. Click the filter button
+2. Open the Status dropdown","Approved For Hire, Assessment Completed, For Assessment, For Background Check, For Final Deliberation, For Initial Screening, For Interview, For Shortlisting, Interviewed, Job Offer Accepted, Job Offer Sent, Pending, Pre Employment Requirements, Recommended and Shortlisted",Passed,As expected. The list is searchable,,,Playwright: admin-applications.spec.ts. This list has no Failed or Not Qualified statuses (the Change status list does)
+TC-APPADM-026,The Status header sorts ascending then descending,Verify sorting,Signed in with the Admin Dashboard module active. At least two applications exist,"1. Open /admin/applications
+2. Click the Status header
+3. Click it again","The first click gives ?sort=status:asc and an up arrow. The second gives ?sort=status:desc and the order reverses",Passed,As expected,,,Playwright: admin-applications.spec.ts. The Applicant Details and Date Applied headers also have a sort button and were not tried
+TC-APPADM-027,Only Attached Exam(s) and Updated at can be switched off in the column manager,Verify the column manager,Signed in with the Admin Dashboard module active,"1. Click the column manager button
+2. Try the checkboxes
+3. Tick Updated at and click Apply columns
+4. Click Reset","Applicant Details, Demographics, Addresses, Contact Info, Position Applied, Status and Date Applied are locked on (disabled). Attached Exam(s) and Updated at can be toggled. Reset returns Updated at to off",Passed,"As expected. Whether Apply columns added the Updated at column to the table was not confirmed",,,Playwright: admin-applications.spec.ts. The panel stays open after Apply columns
+TC-APPADM-028,Ticking a row shows the selected-records bar,Verify row selection,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Tick a row checkbox","A 'N records selected' bar with 'Select all N' and 'Deselect all' and a Bulk actions button appears. Deselect all clears it",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-029,The selection is cleared when another status tab is opened,Verify the selection across tabs,Signed in with the Admin Dashboard module active. Two rows are ticked,"1. Tick rows on Screening & Shortlist
+2. Click the Interview & Evaluation tab","The selection is cleared on the new tab",Failed,"The '2 records selected' bar stayed on the empty Interview & Evaluation tab",Open,Low,Playwright: admin-applications.spec.ts (test.fixme). Confirm with the team whether keeping the selection is intended
+TC-APPADM-030,The Bulk actions menu offers six actions,Verify the bulk menu,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions","Change status, Send Email Notification, Mark not qualified, Attach Exam Types, Set for initial screening and Set for interview",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-031,Bulk Attach Exam Types opens its modal,Verify the bulk attach modal,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions > Attach Exam Types
+3. Open the Exam Types / Templates dropdown, choose a template, switch the Attachment Mode and type a remark
+4. Click Cancel","An 'Attach Exam Types in Bulk' modal with a required searchable multi-select Exam Types / Templates (a chosen exam becomes a chip), Attachment Mode 'Add to existing attached exams' (default) or 'Replace existing attached exams with selected', optional remarks, Submit and Cancel. Cancel closes it and a reopened form is empty",Passed,As expected. The list held 2 templates,,,Playwright: admin-applications.spec.ts. Opened and closed only: Submit is never pressed
+TC-APPADM-032,Bulk Set for initial screening opens its modal,Verify the bulk screening modal,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions > Set for initial screening","A 'Set for Initial Screening' modal: 'Set selected applicants to For Initial Screening. You may optionally attach exam types.' with an optional Attach Exam Types dropdown, Submit and Cancel",Passed,As expected,,,Playwright: admin-applications.spec.ts. Opened and closed only: Submit is never pressed
+TC-APPADM-033,Bulk Set for interview opens its modal with its required fields,Verify the bulk interview modal,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions > Set for interview
+3. Fill the date, time and venue and choose an interviewer
+4. Click Cancel","A 'Set for Interview' modal with required Interview Date, Interview Time, Interviewer (searchable dropdown of staff) and Venue, optional Remarks, Cancel and Submit",Passed,As expected. The date and time boxes did not take typed digits under automation on the first try,,,Playwright: admin-applications.spec.ts. Opened and closed only. In Playwright use fill() with 2026-12-30 for the date
+TC-APPADM-034,Bulk Change status opens its modal with a searchable status list,Verify the bulk status modal,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions > Change status
+3. Open the Change Application Status dropdown","A 'Change status' modal with a searchable status list (for example Approved For Hire, Failed Assessment, Failed Interview, For Initial Screening, Job Offer Sent, No Show, Not Qualified, Not Selected, Offer Declined), Submit and Cancel",Passed,As expected. The list holds at least 16 statuses: the last ones were not read,,,Playwright: admin-applications.spec.ts. Opened and closed only: Submit is never pressed
+TC-APPADM-035,Bulk Mark not qualified offers eight reasons,Verify the bulk reasons,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions
+3. Point at Mark not qualified","A list of reasons: Educational background, Training, Experience, Eligibility, Incomplete file uploads, Others, Include all and Just Mark",Passed,As expected,,,Playwright: admin-applications.spec.ts. The bulk reasons were not opened one by one (the row versions were: TC-APPADM-046 to 049)
+TC-APPADM-036,Bulk Send Email Notification offers three message types,Verify the bulk email menu,Signed in with the Admin Dashboard module active. At least one row is ticked,"1. Tick a row
+2. Click Bulk actions
+3. Point at Send Email Notification","Acknowledgement email, Letter of regret and Custom message",Passed,As expected,,,Playwright: admin-applications.spec.ts. The bulk message types were not opened (the row versions were: TC-APPADM-041 to 043)
+TC-APPADM-037,Row Send SMS opens the Compose SMS Notification modal,Verify the SMS action,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Click the three-dot button of a row
+3. Click Send SMS
+4. Wait up to 10 seconds",A 'Compose SMS Notification' modal opens,Passed,"As expected. The modal takes 5 to 8 seconds to appear (see TC-APPADM-062)",,,Playwright: admin-applications.spec.ts. Opened and closed only: Send Message is never pressed
+TC-APPADM-038,The Compose SMS modal has a template list a phone number and the message,Verify the SMS modal content,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open the Send SMS modal of a row
+2. Open the Select SMS Template dropdown
+3. Click Cancel","'Review the message below before sending. Ensure the recipient's contact details are correct.' A Select SMS Template dropdown, a Phone Number box filled with the applicant's number, a required SMS Content box ('ZCMC Recruitment: ... This is an automated message. Please do not reply.'), Cancel and Send Message",Passed,"As expected. The template dropdown listed no templates (only 'Select an option')",,,Playwright: admin-applications.spec.ts. Send Message is never pressed. The Sms Templates module has not been inspected yet
+TC-APPADM-039,View Documents opens a panel with the applicant sections,Verify the documents panel,Signed in with the Admin Dashboard module active. At least one application exists,"1. Open /admin/applications
+2. Click the three-dot button of a row
+3. Click View Documents","A panel 'View Documents - View the documents uploaded by the applicant' with Educational Background, Eligibility / Licenses, Work History, Trainings and Attachments. Escape closes it",Passed,As expected,,,Playwright: admin-applications.spec.ts. The panel shows personal data: only the section names are checked
+TC-APPADM-040,View Documents shows dates and ratings in a readable format,Verify the formatting in the documents panel,Signed in with the Admin Dashboard module active. The application has education and eligibility records,"1. Open View Documents of a row
+2. Look at Graduated and the eligibility rating","Graduated shows a date and the rating shows a short number such as 75.2",Failed,"Graduated shows a raw number and the rating shows 75.200000000000003",Open,Low,Playwright: admin-applications.spec.ts (test.fail until fixed)
+TC-APPADM-041,Row Acknowledgement Email asks for confirmation,Verify the acknowledgement email action,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Send Email Notification
+3. Click Acknowledgement Email
+4. Wait up to 10 seconds
+5. Click Cancel","A confirmation 'Are you sure you want to send the acknowledgement email? Please note that there is a daily limit of 500 application emails.' with Cancel and Confirm",Passed,As expected. The modal takes 5 to 8 seconds to appear,,,Playwright: admin-applications.spec.ts. Confirm is never pressed: it sends a real email. The result of Confirm needs a test applicant
+TC-APPADM-042,Row Letter of Regret asks for confirmation,Verify the letter of regret action,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Send Email Notification
+3. Click Letter of Regret
+4. Wait up to 10 seconds
+5. Click Cancel","A confirmation 'Are you sure you want to send the letter of regret? Please note that there is a daily limit of 500 application emails.' with Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed: it sends a real email
+TC-APPADM-043,Row Custom Message opens an email composer,Verify the custom message action,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Send Email Notification
+3. Click Custom Message
+4. Type a subject
+5. Click Cancel","A 'Custom Message' modal: 'Enter your custom message, Please note that there is a daily limit of 500 application emails.' with a required Subject, a rich-text Message editor (bold, italic, underline, strikethrough, subscript, superscript, H2, H3, alignment, lists, undo, redo), Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed: it sends a real email
+TC-APPADM-044,Row Mark as Hired asks to confirm the hiring,Verify the hire action,Signed in with the Admin Dashboard module active. An application that can be hired exists,"1. Click the three-dot button of a row
+2. Click Mark as Hired
+3. Wait up to 10 seconds
+4. Press Escape","A 'Confirm Hiring Process' modal: 'Please review the applicant's credentials before finalizing. Once confirmed, you will need to manually update their record in UMIS.' with Cancel and Confirm Hire",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm Hire is never pressed: it changes a real application
+TC-APPADM-045,Row Mark not qualified offers eight reasons,Verify the row reasons,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Mark not qualified","Educational background, Training, Experience, Eligibility, Incomplete file uploads, Others, Include all and Just Mark",Passed,As expected,,,Playwright: admin-applications.spec.ts (covered by TC-APPADM-046 to 049 which hover the same menu)
+TC-APPADM-046,Row Mark not qualified - Educational background asks for confirmation,Verify the educational background reason,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Mark not qualified
+3. Click Educational background
+4. Wait up to 10 seconds
+5. Press Escape","A 'Not Qualified - Educational Background' modal: 'Are you sure you would like to do this?' with Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed. Training / Experience / Eligibility / Incomplete file uploads were not opened one by one: they are assumed to follow this pattern
+TC-APPADM-047,Row Mark not qualified - Others requires a reason,Verify the others reason,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Mark not qualified
+3. Click Others
+4. Type a reason
+5. Press Escape","A 'Not Qualified - Others' modal with a required Reason box, Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed. The empty-reason validation needs Confirm and was not tried
+TC-APPADM-048,Row Mark not qualified - Just Mark is without notification,Verify the just mark reason,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Mark not qualified
+3. Click Just Mark
+4. Wait up to 10 seconds
+5. Press Escape","A 'Mark not qualified without notification' modal: 'Are you sure you would like to do this?' with Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed
+TC-APPADM-049,Row Mark not qualified - Include all uses all reasons,Verify the include all reason,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Point at Mark not qualified
+3. Click Include all
+4. Wait up to 10 seconds
+5. Press Escape","A 'Not Qualified - All Reasons' modal: 'Are you sure you would like to do this?' with Cancel and Confirm",Passed,As expected,,,Playwright: admin-applications.spec.ts. Confirm is never pressed
+TC-APPADM-050,Row Attach Exam Types opens a per-applicant modal,Verify the row attach modal,Signed in with the Admin Dashboard module active. An application with an attachable status exists,"1. Click the three-dot button of a row
+2. Click Attach Exam Types
+3. Wait up to 10 seconds
+4. Press Escape","A modal titled 'Attach Exam Types' with the applicant name: 'Attach or update examination types/templates for this applicant.' A required Exam Types / Templates dropdown, optional remarks, Save Exam Attachment and Cancel. There is no add or replace choice (the bulk modal has one)",Passed,As expected,,,Playwright: admin-applications.spec.ts. Save Exam Attachment is never pressed
+TC-APPADM-051,Row Set for interview opens the interview modal,Verify the row interview modal,Signed in with the Admin Dashboard module active. An application that can be set for interview exists,"1. Click the three-dot button of a row
+2. Click Set for interview
+3. Wait up to 10 seconds
+4. Press Escape","The same 'Set for Interview' modal as the bulk one: required date, time, interviewer and venue, optional remarks",Passed,As expected,,,Playwright: admin-applications.spec.ts. Submit is never pressed
+TC-APPADM-052,Row Change status opens the status modal,Verify the row status modal,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Click Change status
+3. Wait up to 10 seconds
+4. Press Escape","A 'Change status' modal with a Change Application Status dropdown, Submit and Cancel",Passed,As expected,,,Playwright: admin-applications.spec.ts. Submit is never pressed
+TC-APPADM-053,A Pending row offers Set for initial screening,Verify the row screening action,Signed in with the Admin Dashboard module active. An application has the status Pending,"1. Open the three-dot menu of the Pending row
+2. Click Set for initial screening
+3. Wait up to 10 seconds
+4. Press Escape","A 'Set for Initial Screening' modal: 'Set this applicant to For Initial Screening. You may optionally attach exam types now.' with an optional exam dropdown, Submit and Cancel",Passed,As expected,,,Playwright: admin-applications.spec.ts. Skips when no row is Pending. Submit is never pressed
+TC-APPADM-054,The row menu depends on the application status,Verify the status-dependent menu,Signed in with the Admin Dashboard module active. A Pending row and a For Initial Screening row exist,"1. Open the three-dot menu of a Pending row
+2. Open the menu of a For Initial Screening row
+3. Open the menu of a row with an attached exam","A Pending row offers six actions (View, View Documents, Send SMS, Send Email Notification, Mark not qualified, Set for initial screening). A For Initial Screening row offers nine (no Set for initial screening). A row with an attached exam offers ten (adds Exam Result)",Passed,As expected,,,Playwright: admin-applications.spec.ts. Skips when no row is Pending
+TC-APPADM-055,Exam Result shows the examination results of an applicant,Verify the exam result modal,Signed in with the Admin Dashboard module active. An application has an attached exam,"1. Open the three-dot menu of the row that has an exam
+2. Click Exam Result
+3. Wait up to 10 seconds
+4. Press Escape","An 'Examination Results' modal: 'Candidate examination performance, ratings, and submitted answers.' A summary card (application number, position, email, phone, an Awaiting Examination badge and the application status), counters (Attached Exams, Completed, Passed, Failed, Average Grade) and an Attached Examination Breakdown with the exam details and a Manage Room & Controls link",Passed,As expected (Test Exam: General / Batch 1 / 60 mins / Pending),,,Playwright: admin-applications.spec.ts. The Manage Room & Controls link was not followed. Skips when no row has an exam
+TC-APPADM-056,Generate Reports opens the Generate Report page,Verify the Generate Reports button,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click Generate Reports","The page /admin/generate-report opens, titled 'Generate Report' with the line 'Manage and export detailed applicant lists.'",Passed,As expected,,,Playwright: admin-applications.spec.ts
+TC-APPADM-057,The Generate Report page lists five reports,Verify the report list,Signed in with the Admin Dashboard module active,"1. Open /admin/generate-report","A 'List of reports' table with a Search box and Per page: List of Applicants, List for Interview, Assessment Form, List of Onboarded and RDR (Report of documentary review), each with a Generate link",Passed,As expected,,,Playwright: admin-applications.spec.ts. The Generate links were not clicked (not inspected: what each report asks for)
+TC-APPADM-058,Review Auto-Rejections opens the System Screening Result modal,Verify the auto-rejection review,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Click Review Auto-Rejections
+3. Open the Select Job Post dropdown
+4. Press Escape","A 'System Screening Result' modal: 'Please select Job posts to view the applications that were flagged for failing to meet mandatory Education or Eligibility standards.' A required Select Job Post dropdown (searchable), Cancel and Submit",Passed,As expected. The dropdown listed one job (SUPERVISING ADMINISTRATIVE OFFICER) and not ATTORNEY I,,,Playwright: admin-applications.spec.ts. Submit is never pressed (not inspected: the result list)
+TC-APPADM-059,Action Logs lists the audit entries,Verify the Action Logs page,Signed in with the Admin Dashboard module active,"1. Click the avatar (top right)
+2. Click Action Logs","The page /admin/action-logs-page opens with the heading 'Action Logs' and an 'Action Audit Logs' table with the columns User, Action and Remarks. The entries are logins and module switches",Passed,As expected. No entry was seen for SMS or email actions (none was sent),,,Playwright: admin-applications.spec.ts. The page was only opened: filters and paging were not inspected
+TC-APPADM-060,No raw script text is shown on the Applications page,Verify the page is clean,Signed in with the Admin Dashboard module active,"1. Open /admin/applications
+2. Scroll below the table",Only the page content is shown,Failed,"JavaScript source text (newWin.document ... fetch(fileUrl ...) and a small '404' box are shown under the table",Open,Low,Playwright: admin-applications.spec.ts (test.fail until fixed). Same defect as TC-APPLY-008 and TC-APPPORTAL-008: it looks like the file preview script leaking into the layout
+TC-APPADM-061,Cancel or Escape closes a modal and nothing changes,Verify the modal close behaviour,Signed in with the Admin Dashboard module active,"1. Open any row action modal
+2. Click Cancel (or press Escape)
+3. Open it again","The modal closes without any change and the form is empty when reopened",Passed,As expected for every modal tried,,,Playwright: admin-applications.spec.ts
+TC-APPADM-062,Row action modals open within a few seconds,Verify how fast the modals open,Signed in with the Admin Dashboard module active. At least one application exists,"1. Click the three-dot button of a row
+2. Click Send SMS (or Acknowledgement Email)
+3. Time how long the modal takes to appear","The modal appears within about 3 seconds",Failed,"The modal took 5 to 8 seconds to appear and nothing showed in between",Open,Low,"Playwright: not automated (the tests wait up to 20 seconds). The 3 second target is an assumption: confirm with the team. Nothing shows while it loads, so a user may click twice"

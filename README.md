@@ -98,7 +98,7 @@ Every test title starts with an ID that matches the test case document:
 ## Test case sheet scripts
 New cases go into the spec and, since 2026-11-23, into a CSV in `test-cases/` that is copied by hand into a tab of the "[QA 2026] Recruitment System" sheet (no new Apps Scripts). Google Sheets will not let a script copy the "Test Cases" tab (it holds a Table), so duplicate it by hand and rename the copy.
 - New CSVs have 11 columns: Test case ID, Title, Description, Pre-conditions, Test steps, Expected results, Status, Actual results, Bug Status, Severity, Notes. To fill a tab: clear sample rows from row 10, copy CSV columns A to J (no header) into column A at row 10, then copy column K (Notes) into column AC at row 10. (The older CSVs `1` to `5` have no Pre-conditions column.)
-- `test-cases/Applicant Portal.csv` (`TC-APPPORTAL-001` to `010`), `test-cases/HR Applications.csv` (`TC-APPADM-001` to `014`) and `test-cases/HR-MPSB Panel.csv` (`TC-MPSB-001` to `003`): tabs named `Applicant Portal`, `HR Applications` and `HR-MPSB Panel`.
+- `test-cases/Applicant Portal.csv` (`TC-APPPORTAL-001` to `010`), `test-cases/HR Applications.csv` (`TC-APPADM-001` to `062`) and `test-cases/HR-MPSB Panel.csv` (`TC-MPSB-001` to `003`): tabs named `Applicant Portal`, `HR Applications` and `HR-MPSB Panel`.
 The Apps Script files below are the earlier approach.
 - `test-cases/create-test-case-tabs.gs`, function `fillTestCaseTabs`: Landing Page, Landing Buttons, Job Browsing, Registration, Login.
 - `test-cases/fill-job-posts-tab.gs`, function `fillJobPostsTab`: fills the `Job Posts` tab (TC-JP-001 to TC-JP-054). The tab must be named exactly `Job Posts`. A value the sheet's dropdowns reject is left empty and listed in the final message.
