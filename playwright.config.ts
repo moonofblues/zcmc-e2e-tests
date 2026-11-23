@@ -15,7 +15,15 @@ export default defineConfig({
   retries: 0,
   timeout: 45_000,
   expect: { timeout: 10_000 },
-  reporter: [['list'], ['html', { open: 'never' }]],
+  // In CI also annotate failures on GitHub and write JSON for the job summary.
+  reporter: process.env.CI
+    ? [
+        ['github'],
+        ['list'],
+        ['html', { open: 'never' }],
+        ['json', { outputFile: 'ci-results.json' }],
+      ]
+    : [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: process.env.BASE_URL ?? 'https://recruitment.zcmc.online',
     screenshot: 'only-on-failure',

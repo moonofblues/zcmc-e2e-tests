@@ -1,5 +1,6 @@
 node_modules/
 playwright-report/
+ci-results.json
 .env
 admin-state.json
 .auth/
