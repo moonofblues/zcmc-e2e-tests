@@ -16,7 +16,7 @@ Secrets are NOT in the repo: copy `.env.example` to `.env` and fill it in.
 ## Rules
 - Tests run one at a time (`workers: 1`).
 - Use throwaway data only. Keep credentials in `.env` (git-ignored).
-- Do not run tests that change data unless you mean to.
+- The app has no sandbox, no login and no roles, and its data is mock data. Tests may create and delete records. Give test records an obvious name (for example "PW TEST") and delete them at the end of the test.
 
 ## Run
 ```
