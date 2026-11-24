@@ -27,3 +27,7 @@ npm run report      # open the HTML report
 
 ## CI
 `.github/workflows/playwright.yml` is manual only. GitHub-hosted runners cannot reach the private address, so use a self-hosted runner on the ZCMC network (and set the `BASE_URL` repository variable).
+
+## Docs
+- `docs/TEST-CASE-FORMAT.md`: columns and allowed values for the test case CSVs.
+- `docs/QA-STRATEGY.md`: QA strategy for this system.

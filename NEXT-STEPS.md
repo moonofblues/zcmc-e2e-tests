@@ -15,9 +15,9 @@
 4. Not yet explored: Cold-Chain dialogs (Authorize New Batch, Log Bottle Thawed), Screening Rules, Audit Trail, Export to Excel.
 
 ## CSV rules
-- Columns: `Test case ID,Title,Description,Test steps,Pre-conditions,Expected results,Status,Actual results,Bug Status,Severity,Notes`
+- Columns: `Test case ID,Title,Description,Pre-conditions,Test steps,Expected results,Status,Actual results,Bug Status,Severity,Notes` (see `docs/TEST-CASE-FORMAT.md`)
 - IDs look like `TC-XXX-nnn` and go in the test titles.
-- Status: Passed / Failed / Blocked / [Retested] Pass (blank if not run). Bug Status: Open / Closed / Fixed. Severity: Critical / Major / Minor / Low.
+- Status: Passed / Failed / Blocked / [Retested] Passed (blank if not run). Bug Status: Open / Closed / Fixed. Severity: Critical / Major / Minor / Low.
 
 ## Working rules
 - Ask before acting. Never run tests or anything that changes data unless told to.
